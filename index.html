@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Martin Luther King and the Montgomery Story</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="comic">
+<style>
+body{background-color:#ffffff;color:#000000;}
+#toolbar a{background-color:#ffffff;color:#000000;text-decoration:none;}
+#toolbar a:hover{background-color:#000000;color:#ffffff;}
+#toolbar li{background-color:#ffffff;
+display:inline;list-style-type:none;padding:.20em;text-align:center;}
+.no-sr {position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
+</style>
+<script type="text/javascript">
+var num_images=16;
+var image_array=[];
+var pre="";
+var i=0;for(i=1;i<=9;i++)image_array[i-1]=pre+"0"+i+".jpg";
+for(i=10;i<=16;i++)image_array[i-1]=pre+""+i+".jpg";
+var current=0;
+var scale=true;
+var myimage=new Image();
+function $(x){return document.getElementById(x);}
+function getScale(){return scale;}
+function setScale(i){scale=i;}
+function getNumImages(){return num_images;}
+function getWindowWidth(){
+ var width=800;
+ if(typeof(window.innerWidth)==="number"){width=window.innerWidth;}
+ else{var b=window.document.body;if(b&&typeof(b.clientWidth)==="number"){width=b.clientWidth;}}
+ return width*0.96;
+}
+myimage.onload=function(){
+ var ss=$("slideshow");
+ ss.width=getWindowWidth();
+ var w=myimage.width;var h=myimage.height;
+ if((w>h)&&scale){var r=w/h;var x=Math.ceil(r);if((r>1.1)&&(r<2))x=2;ss.width=x*getWindowWidth();}
+};
+function setImage(){
+ $("current_image").value=current+1;
+ var ss=$("slideshow");var x=image_array[current];
+ ss.src=x;ss.alt=x;myimage.src=x;
+ window.scrollTo(0,0);
+}
+function next(){current+=1;if(current>=num_images){current=0;}setImage();}
+function previous(){current-=1;if(current<0){current=num_images-1;}setImage();}
+function rewind(){current=0;setImage();}
+function forward(){current=num_images-1;setImage();}
+function setCurrentImage(){
+ var new_image=parseInt($("current_image").value,10);
+ if(isNaN(new_image)||(new_image>num_images)||(new_image<1)){
+  alert("Enter a value between 1 and "+String(num_images));}
+ else{current=new_image-1;setImage();}
+}
+var delay_time=30000;
+var timer_id=0;
+function play(){clearInterval(timer_id);timer_id=setInterval("next()",delay_time);}
+function reverse_play(){clearInterval(timer_id);timer_id=setInterval("previous()",delay_time);}
+function pause(){clearInterval(timer_id);}
+function set_delay(){
+ var read_delay_time=parseInt($("delay_time").value,10);
+ if(isNaN(read_delay_time)||(read_delay_time>300)||(read_delay_time<3)){
+  alert("Enter a time between 3 sec. and 300 secs. (5 min.)");pause();}
+ else delay_time=read_delay_time*1000;
+}
+function keys(key){
+ if(!key){key=event;key.which=key.keyCode;}
+ switch(key.which){
+  case 90:set_delay();reverse_play();break;//z
+  case 88:pause();break;//x
+  case 67:set_delay();play();break;//c
+  case 66:previous();break;//b
+  case 78:next();break;//n
+  case 86:rewind();break;//v
+  case 77:forward();break;//m
+  case 83:$("zoom").click();break;//s
+ }
+}
+function showit(){
+ var t=event.srcElement;
+ var ss=$("slideshow");if(t!==ss)return;
+ var xc=event.x+document.body.scrollLeft;
+ var dv=6;var zn=Math.floor(ss.width/dv);if(xc<zn)previous();if(xc>((dv-1)*zn))next();
+}
+function showitMOZ(e){
+ var t=e.target;
+ var ss=$("slideshow");if(t!==ss)return;
+ var xc=e.pageX-ss.offsetLeft;
+ var dv=6;var zn=Math.floor(ss.width/dv);if(xc<zn)previous();if(xc>((dv-1)*zn))next();
+}
+if(document.all)document.onclick=showit;else window.onclick=showitMOZ;
+document.onkeydown=keys;
+</script>
+</head>
+<body>
+<header>
+<h1 class="no-sr">Martin Luther King and the Montgomery Story</h1>
+</header>
+<main>
+<div style="text-align:center">
+<p onclick="void(0);">
+<script>
+document.write('<img src="'+encodeURIComponent(image_array[0])+'" alt="'+image_array[0]+'" width="'+getWindowWidth()+'" id="slideshow">');
+</script>
+</p>
+</div>
+</main>
+<footer>
+<nav>
+<div style="text-align:center">
+<ul id="toolbar">
+<li><a href="#" onclick="previous();return false;">Prev</a></li>
+<li><a href="#" onclick="next();return false;">Next</a></li>
+<li><a href="#" onclick="rewind();return false;">Home</a></li>
+<li><a href="#" onclick="forward();return false;">End</a></li>
+<li><a href="#" onclick="set_delay();play();return false;">Play</a></li>
+<li><a href="#" onclick="pause();return false;">Pause</a></li>
+<li><a href="#" onclick="set_delay();reverse_play();return false;">Reverse</a></li>
+<li><label>Image <input type="text" id="current_image" value="1" size="3" onfocus="this.select();"> of
+<script>
+document.write(getNumImages());
+</script></label>
+<input type="button" onclick="setCurrentImage();" value="Go" title="Go to image #">
+</li>
+<li><label>Scale:<input type="checkbox" id="zoom" checked="checked" onclick="setScale(!getScale());setCurrentImage();" value="Scale" title="Toggle Scaling"></label></li>
+<li><label>Delay (s): <input type="text" name="delay_time" id="delay_time" value="5" size="3" onfocus="this.select();"></label>
+<input type="button" onclick="set_delay();" value="Set" title="Set delay time (sec)">
+</li>
+</ul>
+</div>
+</nav>
+</footer>
+</body>
+</html>
