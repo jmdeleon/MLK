@@ -13,12 +13,10 @@ body{background-color:#ffffff;color:#000000;}
 display:inline;list-style-type:none;padding:.20em;text-align:center;}
 .no-sr {position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
 </style>
-<script type="text/javascript">
-var num_images=16;
-var image_array=[];
-var pre="";
-var i=0;for(i=1;i<=9;i++)image_array[i-1]=pre+"0"+i+".jpg";
-for(i=10;i<=16;i++)image_array[i-1]=pre+""+i+".jpg";
+<script src="BOOKDATA.JS">
+</script>
+<script>
+var num_images=image_array.length;
 var current=0;
 var scale=true;
 var myimage=new Image();
