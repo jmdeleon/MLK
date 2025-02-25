@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html manifest="mr.mf" lang="en">
 <head>
+<meta charset="utf-8">
 <title>Martin Luther King and the Montgomery Story</title>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="description" content="comic">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" sizes="192x192" href="apple-touch-icon.png">
 <style>
-body{background-color:#ffffff;color:#000000;}
-#toolbar a{background-color:#ffffff;color:#000000;text-decoration:none;}
-#toolbar a:hover{background-color:#000000;color:#ffffff;}
-#toolbar li{background-color:#ffffff;
+body{background-color:#000000;color:#ffffff;}
+#toolbar a{background-color:#000000;color:#ffffff;text-decoration:none;}
+#toolbar a:hover{background-color:#ffffff;color:#000000;}
+#toolbar li{background-color:#000000;
 display:inline;list-style-type:none;padding:.20em;text-align:center;}
 .no-sr {position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
+@viewport{width: device-width;}
+@-ms-viewport{width: device-width;}
 </style>
-<script src="BOOKDATA.JS">
-</script>
 <script>
+var image_array=[ "01.JPG", "02.JPG", "03.JPG", "04.JPG", "05.JPG", "06.JPG", "07.JPG",
+"08.JPG", "09.JPG", "10.JPG", "11.JPG", "12.JPG", "13.JPG", "14.JPG", "15.JPG", "16.JPG" ];
 var num_images=image_array.length;
 var current=0;
 var scale=true;
