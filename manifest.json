@@ -1,0 +1,27 @@
+{
+  "name": "Martin Luther King and the Montgomery Story",
+  "short_name": "Martin Luther King and the Montgomery Story",
+  "description": "Martin Luther King and the Montgomery Story",
+  "icons": [
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "density": "1.0"
+    }
+  ],
+  "developer": {
+    "name": "Alfred Hassler and Benton Resnik with Sy Barry",
+    "url": "https://www.forusa.org/"
+  },
+  "offline_enabled": "true",
+  "appcache_path": "/wdt.mf",
+  "launch_path": "/index.html",
+  "default_locale": "en",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "permissions": [
+    "unlimitedStorage"
+  ]
+}
