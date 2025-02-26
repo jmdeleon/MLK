@@ -15,8 +15,8 @@
     "url": "https://www.forusa.org/"
   },
   "offline_enabled": "true",
-  "appcache_path": "/wdt.mf",
-  "launch_path": "/index.html",
+  "appcache_path": "mr.mf",
+  "launch_path": "index.html",
   "default_locale": "en",
   "start_url": "index.html",
   "display": "standalone",
